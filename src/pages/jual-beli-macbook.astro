@@ -1,0 +1,438 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+// Data MacBook untuk dijual (nanti bisa dipindah ke database/CMS)
+// Gambar dari Unsplash (free to use)
+const macbooks = [
+  {
+    id: 1,
+    name: 'MacBook Air M1 2020',
+    specs: '8GB RAM | 256GB SSD',
+    price: 'Rp 9.500.000',
+    condition: '95% Mulus',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&q=80', // MacBook Air Silver
+    details: 'Battery health 95%, No dent, Fullset box'
+  },
+  {
+    id: 2,
+    name: 'MacBook Pro 13" M1 2020',
+    specs: '8GB RAM | 512GB SSD',
+    price: 'Rp 13.500.000',
+    condition: '90% Bagus',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80', // MacBook Pro
+    details: 'Battery health 88%, Minus lecet tipis body, Fullset'
+  },
+  {
+    id: 3,
+    name: 'MacBook Air M2 2022',
+    specs: '8GB RAM | 256GB SSD | Midnight',
+    price: 'Rp 14.500.000',
+    condition: '98% Like New',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&q=80', // MacBook Dark
+    details: 'Battery health 100%, Garansi resmi 6 bulan'
+  },
+  {
+    id: 4,
+    name: 'MacBook Pro 14" M1 Pro 2021',
+    specs: '16GB RAM | 512GB SSD | Space Gray',
+    price: 'Rp 21.000.000',
+    condition: '92% Excellent',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=800&q=80', // MacBook workspace
+    details: 'Battery cycle 50x, Fullset box + charger original'
+  },
+  {
+    id: 5,
+    name: 'Mac Mini M4 2024',
+    specs: '16GB RAM | 256GB SSD',
+    price: 'Rp 9.500.000',
+    condition: '98% Like New',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80', // Mac Mini
+    details: 'Battery cycle N/A, Compact desktop Mac terbaru'
+  },
+  {
+    id: 6,
+    name: 'iMac M1 24" 2021',
+    specs: '8GB RAM | 256GB SSD | Blue',
+    price: 'Rp 14.000.000',
+    condition: '95% Excellent',
+    status: 'sold',
+    image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80', // iMac
+    details: 'Display 4.5K Retina, Magic Keyboard + Mouse included'
+  }
+];
+---
+
+<Layout 
+  title="Jual Beli MacBook Jogja - MacBook Second Bergaransi | KyuuMac"
+  description="Jual beli MacBook bekas Jogja terpercaya. Katalog MacBook second M1, M2, iMac dengan garansi 1 bulan. Harga terbaik, COD Jogja. Jual MacBook lama dapat harga tinggi!"
+>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        Jual Beli MacBook Second Jogja
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        Beli MacBook bekas berkualitas atau jual MacBook lama dengan harga terbaik
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#beli" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full text-white bg-[#0071e3] hover:bg-[#0077ED] transition-colors">
+          Lihat Katalog
+        </a>
+        <a href="#jual" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full text-gray-900 bg-white border-2 border-gray-300 hover:border-gray-400 transition-colors">
+          Jual MacBook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELI: Katalog MacBook -->
+  <section id="beli" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">MacBook Second Tersedia</h2>
+        <p class="text-xl text-gray-600">Semua unit sudah dicek kondisi dan bergaransi</p>
+      </div>
+
+      <!-- Filter Badges -->
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        <button class="filter-btn active px-6 py-2 rounded-full bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors" data-filter="all">
+          Semua Unit
+        </button>
+        <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors" data-filter="ready">
+          Ready Stock
+        </button>
+        <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors" data-filter="sold">
+          Sold Out
+        </button>
+      </div>
+
+      <!-- MacBook Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {macbooks.map((mac) => (
+          <div class={`macbook-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border ${mac.status === 'sold' ? 'border-gray-300 opacity-75' : 'border-gray-200'}`} data-status={mac.status}>
+            
+            {/* MacBook Image */}
+            <div class="relative h-64 bg-gray-100 overflow-hidden">
+              <img 
+                src={mac.image} 
+                alt={mac.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              
+              {/* Status Badge */}
+              {mac.status === 'sold' ? (
+                <div class="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                  SOLD
+                </div>
+              ) : (
+                <div class="absolute top-4 right-4 bg-[#0071e3] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                  READY
+                </div>
+              )}
+            </div>
+
+            {/* Card Content */}
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{mac.name}</h3>
+              <p class="text-gray-600 mb-3 text-sm">{mac.specs}</p>
+              
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <p class="text-2xl font-bold text-[#0071e3]">{mac.price}</p>
+                  <p class="text-sm text-gray-500">Kondisi: {mac.condition}</p>
+                </div>
+              </div>
+
+              <div class="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                <p class="text-sm text-gray-700">{mac.details}</p>
+              </div>
+
+              {mac.status === 'ready' ? (
+                <a 
+                  href={`https://wa.me/6285117101318?text=Halo%20KyuuMac%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(mac.name)}%20(${encodeURIComponent(mac.price)})`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block w-full text-center px-6 py-3 bg-[#0071e3] hover:bg-[#0077ED] text-white font-medium rounded-xl transition-colors"
+                >
+                  <span class="flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    Chat untuk Beli
+                  </span>
+                </a>
+              ) : (
+                <button 
+                  disabled
+                  class="block w-full text-center px-6 py-3 bg-gray-300 text-gray-500 font-medium rounded-xl cursor-not-allowed"
+                >
+                  Sudah Terjual
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-12">
+        <svg class="w-24 h-24 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+        </svg>
+        <p class="text-xl text-gray-600">Tidak ada unit dengan filter ini</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JUAL: Form Jual MacBook -->
+  <section id="jual" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Jual MacBook Anda</h2>
+        <p class="text-xl text-gray-600">Dapatkan harga terbaik untuk MacBook lama Anda</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <form id="sell-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="seller-name" class="block text-sm font-medium text-gray-700 mb-2">Nama Anda</label>
+              <input type="text" id="seller-name" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0071e3] focus:border-transparent outline-none" placeholder="Nama lengkap" />
+            </div>
+            <div>
+              <label for="seller-phone" class="block text-sm font-medium text-gray-700 mb-2">Nomor WhatsApp</label>
+              <input type="tel" id="seller-phone" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="08xx-xxxx-xxxx" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="mac-model" class="block text-sm font-medium text-gray-700 mb-2">Model MacBook</label>
+              <input type="text" id="mac-model" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="contoh: MacBook Air M1 2020" />
+            </div>
+            <div>
+              <label for="mac-year" class="block text-sm font-medium text-gray-700 mb-2">Tahun Pembelian</label>
+              <input type="text" id="mac-year" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="contoh: 2020" />
+            </div>
+          </div>
+
+          <div>
+            <label for="mac-specs" class="block text-sm font-medium text-gray-700 mb-2">Spesifikasi</label>
+            <input type="text" id="mac-specs" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="contoh: 8GB RAM, 256GB SSD" />
+          </div>
+
+          <div>
+            <label for="mac-condition" class="block text-sm font-medium text-gray-700 mb-2">Kondisi MacBook</label>
+            <textarea id="mac-condition" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none resize-none" placeholder="Jelaskan kondisi: fisik body, LCD, keyboard, battery health, kelengkapan (box, charger)"></textarea>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-1">Tips Jual Cepat</h4>
+                <ul class="text-sm text-gray-700 space-y-1">
+                  <li>• Sertakan foto asli MacBook dari berbagai sisi</li>
+                  <li>• Sebutkan battery health & cycle count</li>
+                  <li>• Jelaskan kekurangan/minus yang ada (jika ada)</li>
+                  <li>• Sertakan kelengkapan (box, charger, nota)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full px-8 py-4 bg-[#0071e3] hover:bg-[#0077ED] text-white font-medium rounded-xl transition-colors flex items-center justify-center text-lg">
+            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Kirim Info MacBook via WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keuntungan Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
+        Kenapa Pilih KyuuMac?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Unit Terjamin</h3>
+          <p class="text-gray-600">Semua MacBook bekas sudah dicek kondisi dan dilengkapi garansi toko</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Harga Terbaik</h3>
+          <p class="text-gray-600">Harga jual beli yang fair dan kompetitif di Jogja</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">COD Jogja</h3>
+          <p class="text-gray-600">Bisa COD langsung atau transfer aman dengan bukti lengkap</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppButton />
+
+  <!-- Product Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "MacBook Bekas Berkualitas di Jogja",
+    "description": "Koleksi MacBook second terpercaya dengan garansi 1 bulan",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "position": 1,
+        "name": "MacBook Air M1 2020 8GB/256GB",
+        "description": "MacBook Air M1 2020 kondisi 95% mulus, battery health 95%",
+        "offers": {
+          "@type": "Offer",
+          "price": "9500000",
+          "priceCurrency": "IDR",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "KyuuMac"
+          }
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 2,
+        "name": "Mac Mini M4 2024 16GB/256GB",
+        "description": "Mac Mini M4 2024 kondisi 98% like new, compact desktop Mac terbaru",
+        "offers": {
+          "@type": "Offer",
+          "price": "9500000",
+          "priceCurrency": "IDR",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "KyuuMac"
+          }
+        }
+      },
+      {
+        "@type": "Product",
+        "position": 3,
+        "name": "iMac M1 24\" 2021 8GB/256GB Blue",
+        "description": "iMac M1 24 inch kondisi 95% excellent, display 4.5K Retina",
+        "offers": {
+          "@type": "Offer",
+          "price": "14000000",
+          "priceCurrency": "IDR",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "KyuuMac"
+          }
+        }
+      }
+    ]
+  }
+  </script>
+</Layout>
+
+<script>
+  // Filter functionality
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const macbookCards = document.querySelectorAll('.macbook-card');
+  const emptyState = document.getElementById('empty-state');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      
+      // Update active button
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'bg-gray-900', 'text-white');
+        b.classList.add('bg-gray-200', 'text-gray-700');
+      });
+      btn.classList.add('active', 'bg-gray-900', 'text-white');
+      btn.classList.remove('bg-gray-200', 'text-gray-700');
+      
+      // Filter cards
+      let visibleCount = 0;
+      macbookCards.forEach(card => {
+        const status = card.getAttribute('data-status');
+        if (filter === 'all' || status === filter) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState?.classList.remove('hidden');
+      } else {
+        emptyState?.classList.add('hidden');
+      }
+    });
+  });
+
+  // Sell form handler
+  const sellForm = document.getElementById('sell-form') as HTMLFormElement;
+  sellForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = (document.getElementById('seller-name') as HTMLInputElement).value;
+    const phone = (document.getElementById('seller-phone') as HTMLInputElement).value;
+    const model = (document.getElementById('mac-model') as HTMLInputElement).value;
+    const year = (document.getElementById('mac-year') as HTMLInputElement).value;
+    const specs = (document.getElementById('mac-specs') as HTMLInputElement).value;
+    const condition = (document.getElementById('mac-condition') as HTMLTextAreaElement).value;
+    
+    // Format WhatsApp message
+    let message = `Halo KyuuMac, saya mau jual MacBook:\n\n`;
+    message += `*Nama:* ${name}\n`;
+    message += `*No. WA:* ${phone}\n`;
+    message += `*Model:* ${model}\n`;
+    if (year) message += `*Tahun:* ${year}\n`;
+    if (specs) message += `*Spesifikasi:* ${specs}\n`;
+    message += `*Kondisi:*\n${condition}`;
+    
+    // Open WhatsApp
+    const waUrl = `https://wa.me/6285117101318?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+    
+    // Reset form
+    sellForm.reset();
+  });
+</script>

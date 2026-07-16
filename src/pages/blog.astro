@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+---
+
+<Layout 
+  title="Blog & Tips MacBook - KyuuMac Jogja"
+  description="Tips dan tutorial seputar perawatan MacBook, troubleshooting masalah umum, dan informasi terkini tentang produk Apple."
+>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50 to-white">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        Blog & Tips MacBook
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Informasi, tips, dan panduan lengkap seputar MacBook & iMac
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog Placeholder -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Blog Post 1 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+          <div class="p-6">
+            <span class="text-sm text-blue-600 font-medium">Tips & Trik</span>
+            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">
+              Cara Merawat Baterai MacBook Agar Awet
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Pelajari tips merawat baterai MacBook agar tetap sehat dan tahan lama...
+            </p>
+            <span class="text-sm text-gray-500">Segera hadir</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600"></div>
+          <div class="p-6">
+            <span class="text-sm text-green-600 font-medium">Tutorial</span>
+            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">
+              Troubleshooting MacBook Mati Total
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Langkah-langkah yang bisa Anda coba sebelum membawa ke service center...
+            </p>
+            <span class="text-sm text-gray-500">Segera hadir</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600"></div>
+          <div class="p-6">
+            <span class="text-sm text-orange-600 font-medium">Panduan</span>
+            <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3">
+              Tips Beli MacBook Bekas Berkualitas
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Hal-hal yang perlu diperhatikan saat membeli MacBook second-hand...
+            </p>
+            <span class="text-sm text-gray-500">Segera hadir</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Coming Soon Notice -->
+      <div class="mt-16 text-center">
+        <div class="inline-block bg-purple-50 rounded-2xl px-8 py-6">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">
+            Konten Segera Hadir
+          </h3>
+          <p class="text-gray-600 mb-6">
+            Kami sedang menyiapkan artikel-artikel berkualitas untuk Anda
+          </p>
+          <a href="https://wa.me/6285117101318?text=Halo%20KyuuMac%2C%20saya%20mau%20bertanya" class="inline-flex items-center px-6 py-3 text-base font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 transition-colors">
+            Tanya Langsung di WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppButton />
+</Layout>
