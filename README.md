@@ -34,7 +34,7 @@ Website multi-page untuk KyuuMac service center MacBook & iMac di Yogyakarta.
 
 ### Kontak Info:
 - WhatsApp: +62 851-1710-1318
-- Email: kyuumac@gmail.com
+- Email: team@kyuumac.com
 - Jam Operasional:
   - Senin - Rabu: 10.00 - 20.00 WIB
   - Kamis: Tutup
