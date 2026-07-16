@@ -1,4 +1,4 @@
-# KyuuMac - Service MacBook & iMac Jogja
+# KyuuMac - Service Macbook & iMac Jogja
 
 Website multi-page untuk KyuuMac service center MacBook & iMac di Yogyakarta.
 
@@ -112,5 +112,5 @@ Tambahkan gambar untuk:
 
 ---
 
-© 2026 KyuuMac - Service MacBook & iMac Jogja
+© 2026 KyuuMac - Service Macbook & iMac Jogja
 # kyumac
